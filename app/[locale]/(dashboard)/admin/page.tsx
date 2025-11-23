@@ -1,8 +1,12 @@
-"use client";
-
 import { BarChart3, Users, FolderGit2, TrendingUp } from "lucide-react";
+import prisma from "@/lib/prisma";
 
-export default function AdminDashboard() {
+export default async function AdminDashboard() {
+  const [projectCount, skillCount] = await Promise.all([
+    prisma.project.count(),
+    prisma.skill.count(),
+  ]);
+
   return (
     <div>
       <h1 className="mb-8 text-3xl font-bold text-gray-900 dark:text-white">
@@ -14,7 +18,7 @@ export default function AdminDashboard() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600 dark:text-gray-400">Total Projects</p>
-              <p className="mt-2 text-3xl font-bold text-gray-900 dark:text-white">12</p>
+              <p className="mt-2 text-3xl font-bold text-gray-900 dark:text-white">{projectCount}</p>
             </div>
             <div className="rounded-full bg-red-100 p-3 dark:bg-red-900/30">
               <FolderGit2 className="h-6 w-6 text-red-600 dark:text-red-400" />
@@ -26,7 +30,7 @@ export default function AdminDashboard() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600 dark:text-gray-400">Skills</p>
-              <p className="mt-2 text-3xl font-bold text-gray-900 dark:text-white">18</p>
+              <p className="mt-2 text-3xl font-bold text-gray-900 dark:text-white">{skillCount}</p>
             </div>
             <div className="rounded-full bg-pink-100 p-3 dark:bg-pink-900/30">
               <BarChart3 className="h-6 w-6 text-pink-600 dark:text-pink-400" />
@@ -38,7 +42,7 @@ export default function AdminDashboard() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600 dark:text-gray-400">Visitors</p>
-              <p className="mt-2 text-3xl font-bold text-gray-900 dark:text-white">1.2k</p>
+              <p className="mt-2 text-3xl font-bold text-gray-900 dark:text-white">-</p>
             </div>
             <div className="rounded-full bg-rose-100 p-3 dark:bg-rose-900/30">
               <Users className="h-6 w-6 text-rose-600 dark:text-rose-400" />
@@ -50,7 +54,7 @@ export default function AdminDashboard() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600 dark:text-gray-400">Growth</p>
-              <p className="mt-2 text-3xl font-bold text-gray-900 dark:text-white">+23%</p>
+              <p className="mt-2 text-3xl font-bold text-gray-900 dark:text-white">-</p>
             </div>
             <div className="rounded-full bg-orange-100 p-3 dark:bg-orange-900/30">
               <TrendingUp className="h-6 w-6 text-orange-600 dark:text-orange-400" />
