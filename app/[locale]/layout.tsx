@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Vazirmatn } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/providers";
-import { Header } from "@/components/layout/header";
+import { ConditionalHeader } from "@/components/layout/conditional-header";
 
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
@@ -11,7 +11,7 @@ type Props = {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 };
-// ----------------------------
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -20,6 +20,11 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const vazirmatn = Vazirmatn({
+  variable: "--font-vazirmatn",
+  subsets: ["arabic"],
 });
 
 export function generateStaticParams() {
@@ -35,17 +40,21 @@ export default async function LocaleLayout({ children, params }: Props) {
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
-  
+
   const isRTL = locale === "fa";
-  
+
   return (
     <html lang={locale} dir={isRTL ? "rtl" : "ltr"} suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${
+          vazirmatn.variable
+        } antialiased ${
+          isRTL ? "font-(--font-vazirmatn)" : "font-(--font-geist-sans)"
+        }`}
       >
         <Providers>
-          <Header locale={locale} />
-          <main className="pt-16">{children}</main>
+          <ConditionalHeader locale={locale} />
+          {children}
         </Providers>
       </body>
     </html>
