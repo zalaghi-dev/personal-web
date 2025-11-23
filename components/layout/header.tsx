@@ -23,18 +23,18 @@ export function Header({ locale }: { locale: string }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
-      <div className="container flex h-16 items-center justify-between px-4">
-        <Link href="/" className="text-xl font-bold">
-          Amir Zalaghi
+    <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-white/80 backdrop-blur-xl dark:bg-black/80">
+      <div className="container mx-auto flex h-20 items-center justify-between px-6 lg:px-8">
+        <Link href="/" className="group flex items-center gap-2 text-2xl font-bold tracking-tight transition-all hover:scale-105">
+          <span className="bg-linear-to-r from-red-600 to-pink-600 bg-clip-text text-transparent dark:from-red-400 dark:to-pink-400">AZ</span>
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium transition-colors hover:text-primary"
+              className="relative text-sm font-medium text-gray-700 transition-all hover:text-red-600 dark:text-gray-300 dark:hover:text-red-400 after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-linear-to-r after:from-red-600 after:to-pink-600 after:transition-all hover:after:w-full"
             >
               {link.label[locale as keyof typeof link.label] || link.label.en}
             </Link>
@@ -49,24 +49,24 @@ export function Header({ locale }: { locale: string }) {
 
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon">
-                <Menu className="h-5 w-5" />
+              <Button variant="ghost" size="icon" className="hover:bg-gray-100 dark:hover:bg-gray-800">
+                <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right">
-              <nav className="flex flex-col gap-4 pt-8">
+            <SheetContent side="right" className="w-full max-w-sm border-l border-white/10 bg-white/95 backdrop-blur-xl dark:bg-black/95">
+              <nav className="flex flex-col gap-6 pt-12">
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="text-lg font-medium transition-colors hover:text-primary"
+                    className="text-xl font-medium text-gray-700 transition-colors hover:text-red-600 dark:text-gray-300 dark:hover:text-red-400"
                   >
                     {link.label[locale as keyof typeof link.label] || link.label.en}
                   </Link>
                 ))}
-                <div className="mt-4 flex items-center gap-2 border-t pt-4">
+                <div className="mt-8 flex items-center gap-3 border-t border-gray-200 pt-6 dark:border-gray-800">
                   <ModeToggle />
                   <LanguageDropdown />
                 </div>
