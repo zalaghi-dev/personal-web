@@ -1,18 +1,13 @@
-import { ModeToggle } from "@/components/common/mode-toggle";
-import { LanguageDropdown } from "@/components/common/language-dropdown";
 import { getTranslations } from "next-intl/server";
 
 export default async function Home() {
   const t = await getTranslations("HomePage");
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <div className="flex items-center gap-2">
-        Hello Welcome to this template
-        <ModeToggle />
-        <LanguageDropdown />
+    <div className="flex min-h-screen flex-col items-center justify-center bg-linear-to-b from-zinc-50 to-zinc-100 dark:from-black dark:to-zinc-900">
+      <div className="text-center">
+        <h1 className="mb-4 text-5xl font-bold">{t("title")}</h1>
+        <p className="text-xl text-muted-foreground">Full Stack Developer</p>
       </div>
-      <br />
-      <h3>{t("title")}</h3>
     </div>
   );
 }

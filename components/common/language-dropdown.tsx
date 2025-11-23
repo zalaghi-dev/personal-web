@@ -23,14 +23,16 @@ export function LanguageDropdown() {
   const searchParams = useSearchParams();
 
   const segments = pathname.split("/");
+  const localeInPath = segments[1] as "en" | "fa" | undefined;
   const current =
-    segments[1] && routing.locales.includes(segments[1])
-      ? segments[1]
+    localeInPath && routing.locales.includes(localeInPath)
+      ? localeInPath
       : routing.defaultLocale;
 
   function navigateTo(targetLocale: string) {
+    const hasLocaleSegment = localeInPath && routing.locales.includes(localeInPath);
     const rest = segments
-      .slice(routing.locales.includes(segments[1]) ? 2 : 1)
+      .slice(hasLocaleSegment ? 2 : 1)
       .join("/");
     const search = searchParams ? `?${searchParams.toString()}` : "";
     const newPath = `/${targetLocale}${rest ? `/${rest}` : ""}${search}`;

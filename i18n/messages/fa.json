@@ -1,5 +1,15 @@
 {
   "HomePage": {
-    "title": "سلام به همه!"
+    "title": "امیر زالقی"
+  },
+  "AboutPage": {
+    "title": "درباره من",
+    "description": "اطلاعات من در اینجا قرار خواهد گرفت."
+  },
+  "ProjectsPage": {
+    "title": "پروژه‌ها"
+  },
+  "SkillsPage": {
+    "title": "مهارت‌ها"
   }
 }
