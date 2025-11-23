@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { ThemeProvider } from "./theme-provider";
+import { NextIntlClientProvider } from "next-intl";
 
 const Providers = ({ children }: { children: ReactNode }) => {
   return (
@@ -9,7 +10,7 @@ const Providers = ({ children }: { children: ReactNode }) => {
       enableSystem
       disableTransitionOnChange
     >
-      {children}
+      <NextIntlClientProvider>{children}</NextIntlClientProvider>
     </ThemeProvider>
   );
 };
