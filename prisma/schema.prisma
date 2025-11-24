@@ -1,52 +1,8 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
+  output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
 }
-
-model Project {
-  id          String   @id @default(cuid())
-  title       String
-  titleFa     String?  @map("title_fa")
-  description String
-  descriptionFa String? @map("description_fa")
-  image       String?
-  githubUrl   String?  @map("github_url")
-  liveUrl     String?  @map("live_url")
-  tags        String[]
-  order       Int      @default(0)
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
-
-  @@map("projects")
-}
-
-model Skill {
-  id        String   @id @default(cuid())
-  name      String
-  category  String
-  level     Int      @default(0)
-  order     Int      @default(0)
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  @@map("skills")
-}
-
-model SiteSettings {
-  id          String   @id @default(cuid())
-  key         String   @unique
-  value       String
-  updatedAt   DateTime @updatedAt @map("updated_at")
-
-  @@map("site_settings")
-}
-

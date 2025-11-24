@@ -1,4 +1,17 @@
 -- CreateTable
+CREATE TABLE "contacts" (
+    "id" TEXT NOT NULL,
+    "fullname" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "phone" TEXT,
+    "message" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "contacts_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "projects" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
@@ -17,6 +30,16 @@ CREATE TABLE "projects" (
 );
 
 -- CreateTable
+CREATE TABLE "site_settings" (
+    "id" TEXT NOT NULL,
+    "key" TEXT NOT NULL,
+    "value" TEXT NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "site_settings_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "skills" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
@@ -27,16 +50,6 @@ CREATE TABLE "skills" (
     "updated_at" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "skills_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "site_settings" (
-    "id" TEXT NOT NULL,
-    "key" TEXT NOT NULL,
-    "value" TEXT NOT NULL,
-    "updated_at" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "site_settings_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex

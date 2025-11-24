@@ -1,0 +1,16 @@
+model Project {
+  id            String   @id @default(cuid())
+  title         String
+  titleFa       String?  @map("title_fa")
+  description   String
+  descriptionFa String?  @map("description_fa")
+  image         String?
+  githubUrl     String?  @map("github_url")
+  liveUrl       String?  @map("live_url")
+  tags          String[]
+  order         Int      @default(0)
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  @@map("projects")
+}
